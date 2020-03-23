@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+
+  gw-oauth-database:
+    image: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - gw-oauth-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=auth
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - gw-oauth
+
+  gw-oauth-resource:
+    image: localhost:5000/gw-oauth-resource:${VERSION}
+    ports:
+      - "8020:8080"
+    networks:
+      - gw-oauth
+
+  gw-oauth-gateway:
+    image: localhost:5000/gw-oauth-gateway:${VERSION}
+    ports:
+      - "8030:8030"
+    networks:
+      - gw-oauth
+    depends_on:
+      - gw-oauth-auth
+
+  gw-oauth-auth:
+    image: localhost:5000/gw-oauth-auth:${VERSION}
+    ports:
+      - "8040:8080"
+    networks:
+      - gw-oauth
+    depends_on:
+      - gw-oauth-database
+
+volumes:
+  gw-oauth-db:
+
+networks:
+  gw-oauth:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.10.16.0/24

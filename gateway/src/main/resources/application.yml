@@ -1,0 +1,56 @@
+spring:
+  profiles:
+    active: debug
+  cloud:
+    gateway:
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
+#      routes:
+#        - id: resource
+#          uri: http://gw-oauth-resource:8080/res
+#          predicates:
+#            - Path=/res/**
+#          filters:
+#            - TokenRelay=
+#            - RemoveRequestHeader=Cookie
+#        - id: auth
+#          uri: http://gw-oauth-auth:8080/auth
+#          predicates:
+#            - Path=/auth/**
+#        - id: oauth2
+#          uri: http://gw-oauth-auth:8080/oauth2
+#          predicates:
+#            - Path=/oauth2/**
+
+  security:
+    oauth2:
+      client:
+        registration:
+          gateway:
+            provider: auth-srv
+            client-id: gateway
+            client-secret: gw-secret
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8030/login/oauth2/code
+            scope: read
+        provider:
+          auth-srv:
+            authorization-uri: http://172.10.16.1:8040/oauth/authorize
+            token-uri: http://172.10.16.1:8040/oauth/token
+            check-token-uri: http://172.10.16.1:8040/oauth/check_token
+            user-info-uri: http://172.10.16.1:8040/oauth/userinfo
+#            user-name-attribute: sub
+#            jwk-set-uri: http://top-oauth-server:8090/uaa/token_keys
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: TRACE
+    org.springframework.security: TRACE
+    org.springframework.security.oauth2: TRACE
+    org.springframework.cloud.gateway: TRACE
+
+server:
+  port: 8030

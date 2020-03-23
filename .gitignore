@@ -1,0 +1,17 @@
+.gradle/
+.idea/
+build/
+out/
+log/
+node_modules/
+*.iml
+*.lock
+tmp/
+
+*.iml
+application-local.yml
+
+.env
+deploy/.version
+.attach_pid*
+

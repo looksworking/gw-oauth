@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: debug
+
+  datasource:
+    url: jdbc:postgresql://gw-oauth-database:5432/auth?currentSchema=public
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    change-log: classpath:/liquibase/changelog.yml
+
+#server:
+#  servlet:
+#    context-path: /auth
+

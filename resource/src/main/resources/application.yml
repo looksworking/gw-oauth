@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: debug
+  security:
+    oauth2:
+      client:
+        registration:
+          resource:
+            provider: auth-srv
+            client-id: resource
+            client-secret: gw-secret
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8020/login/oauth2/code
+            scope: read
+        provider:
+          auth-srv:
+            authorization-uri: http://172.10.16.1:8040/oauth/authorize
+            token-uri: http://172.10.16.1:8040/oauth/token
+            token-info-uri:
