@@ -1,19 +1,43 @@
 spring:
   profiles:
     active: debug
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          resource:
+#            provider: auth-srv
+#            client-id: resource
+#            client-secret: gw-secret
+#            authorization-grant-type: authorization_code
+#            redirect-uri: http://localhost:8020/login/oauth2/code
+#            scope: read
+#        provider:
+#          auth-srv:
+#            authorization-uri: http://172.10.16.1:8040/oauth/authorize
+#            token-uri: http://172.10.16.1:8040/oauth/token
+#            token-info-uri:
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          gateway:
+#            provider: auth-srv
+#            client-id: gateway
+#            client-secret: gw-secret
+#            authorization-grant-type: authorization_code
+#            redirect-uri: http://172.10.16.1:8030/login/oauth2/code
+#            scope: read
+#        provider:
+#          auth-srv:
+#            authorization-uri: http://172.10.16.1:8040/oauth/authorize
+#            token-uri: http://gw-oauth-auth:8080/oauth/token
+#            check-token-uri: http://gw-oauth-auth:8080/oauth/check_token
+#            user-info-uri: http://172.10.16.1:8040/userinfo
+#            user-name-attribute: user_name
+##            jwk-set-uri: http://top-oauth-server:8090/uaa/token_keys
   security:
     oauth2:
-      client:
-        registration:
-          resource:
-            provider: auth-srv
-            client-id: resource
-            client-secret: gw-secret
-            authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8020/login/oauth2/code
-            scope: read
-        provider:
-          auth-srv:
-            authorization-uri: http://172.10.16.1:8040/oauth/authorize
-            token-uri: http://172.10.16.1:8040/oauth/token
-            token-info-uri:
+      resourceserver:
+        jwt:
+          public-key-location:

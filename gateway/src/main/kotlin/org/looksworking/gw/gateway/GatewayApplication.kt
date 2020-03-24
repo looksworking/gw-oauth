@@ -1,4 +1,4 @@
-package org.looksworking.gw.gateway.org.looksworking.gw.gateway
+package org.looksworking.gw.gateway
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -31,16 +31,26 @@ class GatewayApplication(private val filterFactory: TokenRelayGatewayFilterFacto
         return "index"
     }
 
-    @Bean
-    fun customRouteLocator(builder: RouteLocatorBuilder): RouteLocator? {
-        return builder.routes()
-                .route("resource") { r: PredicateSpec ->
-                    r.path("/res")
-                            .filters { f: GatewayFilterSpec -> f.filter(filterFactory.apply()) }
-                            .uri("http://gw-oauth-resource:8080/res")
-                }
-                .build()
-    }
+//    @Bean
+//    fun customRouteLocator(builder: RouteLocatorBuilder): RouteLocator? {
+////        return builder.routes()
+////                .route("resource") { r: PredicateSpec ->
+////                    r.path("/res")
+////                            .filters { f: GatewayFilterSpec -> f.filter(filterFactory.apply()) }
+////                            .uri("http://gw-oauth-resource:8080/res")
+////                }
+////                .build()
+//        return builder.routes()
+//                .route("resource") { r: PredicateSpec ->
+//                    r.path("/res")
+//                            .filters { f: GatewayFilterSpec ->
+//                                f.filters(filterFactory.apply())
+//                                        .removeRequestHeader("Cookie")
+//                            } // Prevents cookie being sent downstream
+//                            .uri("http://172.10.16.1:8020/res")
+//                } // Taking advantage of docker naming
+//                .build()
+//    }
 }
 
 fun main(args: Array<String>) {

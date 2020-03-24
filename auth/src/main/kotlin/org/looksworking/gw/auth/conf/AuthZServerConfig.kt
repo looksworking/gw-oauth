@@ -1,9 +1,14 @@
 package org.looksworking.gw.auth.conf
 
+import com.nimbusds.jose.JWSAlgorithm
+import com.nimbusds.jose.jwk.JWKSet
+import com.nimbusds.jose.jwk.KeyUse
+import com.nimbusds.jose.jwk.RSAKey
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
+import org.springframework.core.io.ClassPathResource
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer
@@ -15,6 +20,9 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices
 import org.springframework.security.oauth2.provider.token.TokenStore
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory
+import org.springframework.security.oauth2.provider.token.store.jwk.JwkTokenStore
+import java.security.interfaces.RSAPublicKey
 import javax.sql.DataSource
 
 
@@ -24,8 +32,11 @@ class AuthZServerConfig(private val passwordEncoder: BCryptPasswordEncoder,
                         private val dataSource: DataSource,
                         @Qualifier("authenticationManagerBean") private val authenticationManager: AuthenticationManager) : AuthorizationServerConfigurerAdapter() {
 
+    private val keyPair = KeyStoreKeyFactory(ClassPathResource("keyPair.jks"), "Welcome1".toCharArray()).getKeyPair("jwt")
+
     override fun configure(security: AuthorizationServerSecurityConfigurer) {
-        security.tokenKeyAccess("permitAll()")
+        security
+                .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("permit()")
     }
 
@@ -40,9 +51,10 @@ class AuthZServerConfig(private val passwordEncoder: BCryptPasswordEncoder,
     }
 
     @Bean
-    fun accessTokenConverter(): JwtAccessTokenConverter? {
+    fun accessTokenConverter(): JwtAccessTokenConverter {
         val converter = JwtAccessTokenConverter()
-        converter.setSigningKey("123")
+        converter.setKeyPair(keyPair)
+//        converter.setSigningKey("123")
         return converter
     }
 
@@ -51,7 +63,7 @@ class AuthZServerConfig(private val passwordEncoder: BCryptPasswordEncoder,
 //        endpoints.tokenStore(tokenStore())
         endpoints.tokenStore(tokenStore())
                 .accessTokenConverter(accessTokenConverter())
-                .authenticationManager(authenticationManager);
+                .authenticationManager(authenticationManager)
     }
 
     @Bean
@@ -61,5 +73,13 @@ class AuthZServerConfig(private val passwordEncoder: BCryptPasswordEncoder,
         defaultTokenServices.setTokenStore(tokenStore())
         defaultTokenServices.setSupportRefreshToken(true)
         return defaultTokenServices
+    }
+
+    @Bean
+    fun jwkSet(): JWKSet {
+        val builder: RSAKey.Builder = RSAKey.Builder(keyPair.getPublic() as RSAPublicKey)
+                .keyUse(KeyUse.SIGNATURE)
+                .algorithm(JWSAlgorithm.RS256)
+        return JWKSet(builder.build())
     }
 }

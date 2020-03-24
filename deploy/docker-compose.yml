@@ -40,6 +40,15 @@ services:
     depends_on:
       - gw-oauth-database
 
+  gw-oauth-uaa:
+    image: scg-demo-uaa:latest
+    expose:
+      - "8090"
+    ports:
+      - "8090:8090"
+    networks:
+      - gw-oauth
+
 volumes:
   gw-oauth-db:
 
@@ -49,3 +58,4 @@ networks:
     ipam:
       config:
         - subnet: 172.10.16.0/24
+

@@ -10,14 +10,14 @@ spring:
         wiretap: true
       httpserver:
         wiretap: true
-#      routes:
-#        - id: resource
-#          uri: http://gw-oauth-resource:8080/res
-#          predicates:
-#            - Path=/res/**
-#          filters:
-#            - TokenRelay=
-#            - RemoveRequestHeader=Cookie
+      routes:
+        - id: resource
+          uri: http://gw-oauth-resource:8080/res
+          predicates:
+            - Path=/res
+          filters:
+            - TokenRelay=
+            - RemoveRequestHeader=Cookie
 #        - id: auth
 #          uri: http://gw-oauth-auth:8080/auth
 #          predicates:
@@ -29,6 +29,7 @@ spring:
 
   security:
     oauth2:
+
       client:
         registration:
           gateway:
@@ -36,16 +37,34 @@ spring:
             client-id: gateway
             client-secret: gw-secret
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8030/login/oauth2/code
+            redirect-uri: http://172.10.16.1:8030/login/oauth2/code
             scope: read
         provider:
           auth-srv:
             authorization-uri: http://172.10.16.1:8040/oauth/authorize
-            token-uri: http://172.10.16.1:8040/oauth/token
-            check-token-uri: http://172.10.16.1:8040/oauth/check_token
-            user-info-uri: http://172.10.16.1:8040/oauth/userinfo
-            user-name-attribute: user_name
-#            jwk-set-uri: http://top-oauth-server:8090/uaa/token_keys
+            token-uri: http://gw-oauth-auth:8080/oauth/token
+            check-token-uri: http://gw-oauth-auth:8080/oauth/check_token
+            user-info-uri: http://172.10.16.1:8040/userinfo
+            user-name-attribute: sub
+            user-info-authentication-method: form
+            jwk-set-uri: http://top-oauth-server:8090/token_keys
+
+#      client:
+#        registration:
+#          gateway:
+#            provider: uaa
+#            client-id: gateway
+#            client-secret: secret
+#            authorization-grant-type: authorization_code
+#            redirect-uri: http://172.10.16.1:8030/login/oauth2/code/gateway
+#            scope: openid,profile,email,resource.read
+#        provider:
+#          uaa:
+#            authorization-uri: http://172.10.16.1:8090/uaa/oauth/authorize
+#            token-uri: http://gw-oauth-uaa:8090/uaa/oauth/token
+#            user-info-uri: http://gw-oauth-uaa:8090/uaa/userinfo
+#            user-name-attribute: sub
+#            jwk-set-uri: http://gw-oauth-uaa:8090/uaa/token_keys
 
 logging:
   level:

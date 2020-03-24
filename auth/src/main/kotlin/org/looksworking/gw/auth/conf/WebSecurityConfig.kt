@@ -16,9 +16,8 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
 
-        http.requestMatchers()
-                .antMatchers("/login", "/oauth/**").and()
-                .authorizeRequests()
+        http.authorizeRequests()
+                .antMatchers("/login", "/oauth/**", "/userinfo", "/token_keys").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
@@ -26,8 +25,8 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.inMemoryAuthentication()
-                .withUser("username")
-                .password(passwordEncoder().encode("password"))
+                .withUser("user1")
+                .password(passwordEncoder().encode("pass1"))
                 .roles("USER");
     }
 
