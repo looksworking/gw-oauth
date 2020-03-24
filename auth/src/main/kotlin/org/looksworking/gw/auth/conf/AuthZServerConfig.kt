@@ -41,7 +41,14 @@ class AuthZServerConfig(private val passwordEncoder: BCryptPasswordEncoder,
     }
 
     override fun configure(clients: ClientDetailsServiceConfigurer) {
-        clients.jdbc(dataSource)
+//        clients.jdbc(dataSource)
+        clients.inMemory()
+                .withClient("gateway")
+                .secret(passwordEncoder.encode("gw-secret"))
+                .authorizedGrantTypes("authorization_code")
+                .redirectUris("http://172.10.16.1:8030/login/oauth2/code/gateway")
+                .scopes("read")
+                .autoApprove("read")
     }
 
     @Bean

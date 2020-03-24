@@ -16,11 +16,19 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
 
+//        http.requestMatchers().antMatchers("/login", "/oauth/**", "/userinfo", "/token_keys/**")
+//            .and().authorizeRequests().anyRequest().authenticated()
+//            .and().formLogin().permitAll()
+
         http.authorizeRequests()
-                .antMatchers("/login", "/oauth/**", "/userinfo", "/token_keys").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/login**", "/oauth/**", "/userinfo**", "/token_keys**")
+                .permitAll()
                 .and()
                 .formLogin().permitAll()
+                .and()
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated()
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {

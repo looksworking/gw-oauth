@@ -37,16 +37,16 @@ spring:
             client-id: gateway
             client-secret: gw-secret
             authorization-grant-type: authorization_code
-            redirect-uri: http://172.10.16.1:8030/login/oauth2/code
+            redirect-uri: http://172.10.16.1:8030/login/oauth2/code/gateway
             scope: read
         provider:
           auth-srv:
             authorization-uri: http://172.10.16.1:8040/oauth/authorize
             token-uri: http://gw-oauth-auth:8080/oauth/token
-            check-token-uri: http://gw-oauth-auth:8080/oauth/check_token
-            user-info-uri: http://172.10.16.1:8040/userinfo
+#            check-token-uri: http://gw-oauth-auth:8080/oauth/check_token
+            user-info-uri: http://gw-oauth-auth:8080/userinfo
             user-name-attribute: sub
-            user-info-authentication-method: form
+#            user-info-authentication-method: form
             jwk-set-uri: http://top-oauth-server:8090/token_keys
 
 #      client:
