@@ -10,5 +10,5 @@ tasks.withType<BootJar> {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-//    compile("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.2.5.RELEASE")
+    compile("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.2.5.RELEASE")
 }

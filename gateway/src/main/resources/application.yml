@@ -1,4 +1,7 @@
 spring:
+  autoconfigure:
+    # TODO: remove when fixed https://github.com/spring-projects/spring-security/issues/6314
+    exclude: org.springframework.boot.actuate.autoconfigure.security.reactive.ReactiveManagementWebSecurityAutoConfiguration
   profiles:
     active: debug
   cloud:
@@ -41,7 +44,7 @@ spring:
             token-uri: http://172.10.16.1:8040/oauth/token
             check-token-uri: http://172.10.16.1:8040/oauth/check_token
             user-info-uri: http://172.10.16.1:8040/oauth/userinfo
-#            user-name-attribute: sub
+            user-name-attribute: user_name
 #            jwk-set-uri: http://top-oauth-server:8090/uaa/token_keys
 
 logging:
