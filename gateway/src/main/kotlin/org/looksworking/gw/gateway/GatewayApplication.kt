@@ -31,6 +31,20 @@ class GatewayApplication(private val filterFactory: TokenRelayGatewayFilterFacto
         return "index"
     }
 
+    @Bean
+    fun customRouteLocator(builder: RouteLocatorBuilder): RouteLocator? {
+        return builder.routes()
+                .route("resource") { r: PredicateSpec ->
+                    r.path("/res")
+                            .filters { f: GatewayFilterSpec ->
+                                f.filters(filterFactory.apply())
+                                        .removeRequestHeader("Cookie")
+                            } // Prevents cookie being sent downstream
+                            .uri("http://gw-oauth-resource:8080/res")
+                } // Taking advantage of docker naming
+                .build()
+    }
+
 //    @Bean
 //    fun customRouteLocator(builder: RouteLocatorBuilder): RouteLocator? {
 ////        return builder.routes()

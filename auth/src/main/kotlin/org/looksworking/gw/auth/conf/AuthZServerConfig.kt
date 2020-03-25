@@ -32,7 +32,7 @@ class AuthZServerConfig(private val passwordEncoder: BCryptPasswordEncoder,
                         private val dataSource: DataSource,
                         @Qualifier("authenticationManagerBean") private val authenticationManager: AuthenticationManager) : AuthorizationServerConfigurerAdapter() {
 
-    private val keyPair = KeyStoreKeyFactory(ClassPathResource("keyPair.jks"), "Welcome1".toCharArray()).getKeyPair("jwt")
+    private val keyPair = KeyStoreKeyFactory(ClassPathResource("keystore.jks"), "Welcome1".toCharArray()).getKeyPair("jwt")
 
     override fun configure(security: AuthorizationServerSecurityConfigurer) {
         security

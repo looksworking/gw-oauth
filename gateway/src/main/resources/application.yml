@@ -10,14 +10,14 @@ spring:
         wiretap: true
       httpserver:
         wiretap: true
-      routes:
-        - id: resource
-          uri: http://gw-oauth-resource:8080/res
-          predicates:
-            - Path=/res
-          filters:
-            - TokenRelay=
-            - RemoveRequestHeader=Cookie
+#      routes:
+#        - id: resource
+#          uri: http://gw-oauth-resource:8080/res
+#          predicates:
+#            - Path=/res
+#          filters:
+#            - TokenRelay=
+#            - RemoveRequestHeader=Cookie
 #        - id: auth
 #          uri: http://gw-oauth-auth:8080/auth
 #          predicates:
@@ -47,7 +47,7 @@ spring:
             user-info-uri: http://gw-oauth-auth:8080/userinfo
             user-name-attribute: sub
 #            user-info-authentication-method: form
-            jwk-set-uri: http://top-oauth-server:8090/token_keys
+            jwk-set-uri: http://gw-oauth-auth:8080/token_keys
 
 #      client:
 #        registration:

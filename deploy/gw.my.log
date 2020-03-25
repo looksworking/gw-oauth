@@ -1,0 +1,75 @@
+[2020-03-25 07:36:55,001] WARN  o.s.h.c.j.Jackson2ObjectMapperBuilder  - For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath 
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.5.RELEASE)
+
+[2020-03-25 07:36:55,490] INFO  o.l.gw.gateway.GatewayApplicationKt  - The following profiles are active: debug 
+[2020-03-25 07:36:56,320] TRACE o.s.c.g.c.GatewayAutoConfiguration$OnVerboseDisabledCondition  - Condition GatewayAutoConfiguration.OnVerboseDisabledCondition on org.springframework.cloud.gateway.config.GatewayAutoConfiguration$GatewayActuatorConfiguration#gatewayLegacyControllerEndpoint did not match due to NoneNestedConditions 1 matched 0 did not; NestedCondition on GatewayAutoConfiguration.OnVerboseDisabledCondition.VerboseDisabled @ConditionalOnProperty (spring.cloud.gateway.actuator.verbose.enabled) matched 
+[2020-03-25 07:36:57,186] INFO  o.s.c.context.scope.GenericScope  - BeanFactory id=037e4374-7c08-3c2a-912f-694b0851a027 
+[2020-03-25 07:36:58,980] DEBUG o.s.c.g.config.GatewayProperties  - Routes supplied from Gateway Properties: [RouteDefinition{id='resource', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/res}}], filters=[], uri=http://gw-oauth-resource:8080/res, order=0, metadata={}}] 
+[2020-03-25 07:36:59,274] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration  - 
+
+Using generated security password: 2b738eaf-8121-45fc-be0b-30bf4d2ac590
+ 
+[2020-03-25 07:36:59,380] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [After] 
+[2020-03-25 07:36:59,380] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [Before] 
+[2020-03-25 07:36:59,380] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [Between] 
+[2020-03-25 07:36:59,380] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [Cookie] 
+[2020-03-25 07:36:59,381] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [Header] 
+[2020-03-25 07:36:59,381] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [Host] 
+[2020-03-25 07:36:59,381] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [Method] 
+[2020-03-25 07:36:59,384] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [Path] 
+[2020-03-25 07:36:59,384] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [Query] 
+[2020-03-25 07:36:59,384] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [ReadBodyPredicateFactory] 
+[2020-03-25 07:36:59,385] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [RemoteAddr] 
+[2020-03-25 07:36:59,385] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [Weight] 
+[2020-03-25 07:36:59,385] INFO  o.s.c.g.r.RouteDefinitionRouteLocator  - Loaded RoutePredicateFactory [CloudFoundryRouteService] 
+[2020-03-25 07:36:59,670] DEBUG o.s.w.r.r.m.a.RequestMappingHandlerMapping  - 1 mappings in 'requestMappingHandlerMapping' 
+[2020-03-25 07:36:59,693] DEBUG o.s.w.r.h.SimpleUrlHandlerMapping  - Patterns [/webjars/**, /**] in 'resourceHandlerMapping' 
+[2020-03-25 07:36:59,843] INFO  o.s.b.a.e.web.EndpointLinksResolver  - Exposing 2 endpoint(s) beneath base path '/actuator' 
+[2020-03-25 07:36:59,934] DEBUG o.s.w.r.r.m.a.ControllerMethodResolver  - ControllerAdvice beans: none 
+[2020-03-25 07:37:00,113] DEBUG o.s.w.s.a.HttpWebHandlerAdapter  - enableLoggingRequestDetails='false': form data and headers will be masked to prevent unsafe logging of potentially sensitive data 
+[2020-03-25 07:37:00,285] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator  - RouteDefinition resource applying {_genkey_0=/res} to Path 
+[2020-03-25 07:37:00,323] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator  - RouteDefinition matched: resource 
+[2020-03-25 07:37:00,510] INFO  o.s.b.w.e.netty.NettyWebServer  - Netty started on port(s): 8030 
+[2020-03-25 07:37:00,513] INFO  o.l.gw.gateway.GatewayApplicationKt  - Started GatewayApplicationKt in 6.547 seconds (JVM running for 7.182) 
+[2020-03-25 07:37:46,552] TRACE o.s.w.s.a.HttpWebHandlerAdapter  - [492710f9-1] HTTP GET "/res", headers={masked} 
+[2020-03-25 07:37:46,611] DEBUG o.s.w.s.s.DefaultWebSessionManager  - Created new WebSession. 
+[2020-03-25 07:37:46,637] DEBUG o.s.s.w.s.u.m.MediaTypeServerWebExchangeMatcher  - httpRequestMediaTypes=[text/html, application/xhtml+xml, image/webp, application/xml;q=0.9, */*;q=0.8] 
+[2020-03-25 07:37:46,637] DEBUG o.s.s.w.s.u.m.MediaTypeServerWebExchangeMatcher  - Processing text/html 
+[2020-03-25 07:37:46,637] DEBUG o.s.s.w.s.u.m.MediaTypeServerWebExchangeMatcher  - text/html .isCompatibleWith text/html = true 
+[2020-03-25 07:37:46,640] TRACE o.s.w.s.a.HttpWebHandlerAdapter  - [492710f9-1] Completed 302 FOUND, headers={masked} 
+[2020-03-25 07:37:46,653] TRACE org.springframework.web.HttpLogging  - [492710f9-1] Handling completed 
+[2020-03-25 07:37:46,706] TRACE o.s.w.s.a.HttpWebHandlerAdapter  - [492710f9-2] HTTP GET "/oauth2/authorization/gateway", headers={masked} 
+[2020-03-25 07:37:46,727] TRACE o.s.w.s.a.HttpWebHandlerAdapter  - [492710f9-2] Completed 302 FOUND, headers={masked} 
+[2020-03-25 07:37:46,727] TRACE org.springframework.web.HttpLogging  - [492710f9-2] Handling completed 
+[2020-03-25 07:37:49,580] TRACE o.s.w.s.a.HttpWebHandlerAdapter  - [492710f9-3] HTTP GET "/login/oauth2/code/gateway?code=rpB6hY&state=5HpkMX-GYMtcssFN0zqFXVWOFU7pfHN5otXjK5-BjU8%3D", headers={masked} 
+[2020-03-25 07:37:49,627] DEBUG o.s.w.r.f.client.ExchangeFunctions  - [4bd1d02e] HTTP POST http://gw-oauth-auth:8080/oauth/token 
+[2020-03-25 07:37:49,663] TRACE org.springframework.web.HttpLogging  - [4bd1d02e] Writing form fields [grant_type, code, redirect_uri] (content masked) 
+[2020-03-25 07:37:49,952] DEBUG o.s.w.r.f.client.ExchangeFunctions  - [4bd1d02e] Response 200 OK 
+[2020-03-25 07:37:50,020] TRACE org.springframework.web.HttpLogging  - [4bd1d02e] Decoded [{access_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODUxNjUwNjksInVzZXJfbmFtZSI6InVzZXIxIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6ImYxOTRhY2U5LTNjMDYtNDRkYi04YjAzLTRjODMwYmI4MjE2MiIsImNsaWVudF9pZCI6ImdhdGV3YXkiLCJzY29wZSI6WyJyZWFkIl19.WWYexWemUYkR48kf3dQdhBjbuF-V1jkCAqvut3N8jMAuwr3tElmMe3jUKq3wsbk4IBHLJ8ZaCYre7USQdmlUq1JUmlV3JrEsvpIKlIpACtgylcArwJqHxb498MSVEDGnwWIzEldsQkk4LTA6VCAwlp77iUHOwz5AzcX486KkH1UOJQ2fpQYRfNyDznMhVIAmS7fgd811y4RqQPtDbmS_avGS2ZRV0IQdZMsUlMwcn9GnHH9m_ReQQwSIX3EeVWdCwpISsnv5APPJ92yHdgLGxz2ouPlZfHMN2IcTW9HYHMwBaPAzEEVmfCQS6oCGEv1-UI6FpqdzG04j_5N8ZE8I9g, token_type=bearer, expires_in=43199, scope=read, jti=f194ace9-3c06-44db-8b03-4c830bb82162}] 
+[2020-03-25 07:37:50,045] DEBUG o.s.w.r.f.client.ExchangeFunctions  - [1412cd27] HTTP GET http://gw-oauth-auth:8080/userinfo 
+[2020-03-25 07:37:50,088] DEBUG o.s.w.r.f.client.ExchangeFunctions  - [1412cd27] Response 200 OK 
+[2020-03-25 07:37:50,092] TRACE org.springframework.web.HttpLogging  - [1412cd27] Decoded [{sub=auth}] 
+[2020-03-25 07:37:50,094] DEBUG o.s.w.r.f.client.ExchangeFunctions  - [4bd1d02e] Cancel signal (to close connection) 
+[2020-03-25 07:37:50,095] DEBUG o.s.w.r.f.client.ExchangeFunctions  - [1412cd27] Cancel signal (to close connection) 
+[2020-03-25 07:37:50,100] TRACE o.s.w.s.a.HttpWebHandlerAdapter  - [492710f9-3] Completed 302 FOUND, headers={masked} 
+[2020-03-25 07:37:50,103] TRACE org.springframework.web.HttpLogging  - [492710f9-3] Handling completed 
+[2020-03-25 07:37:50,118] TRACE o.s.w.s.a.HttpWebHandlerAdapter  - [492710f9-4] HTTP GET "/res", headers={masked} 
+[2020-03-25 07:37:50,122] TRACE o.s.c.g.f.WeightCalculatorWebFilter  - Weights attr: {} 
+[2020-03-25 07:37:50,132] TRACE o.s.c.g.h.p.RoutePredicateFactory  - Pattern "/res" matches against value "/res" 
+[2020-03-25 07:37:50,132] DEBUG o.s.c.g.h.RoutePredicateHandlerMapping  - Route matched: resource 
+[2020-03-25 07:37:50,133] DEBUG o.s.c.g.h.RoutePredicateHandlerMapping  - Mapping [Exchange: GET http://172.10.16.1:8030/res] to Route{id='resource', uri=http://gw-oauth-resource:8080/res, order=0, predicate=Paths: [/res], match trailing slash: true, gatewayFilters=[], metadata={}} 
+[2020-03-25 07:37:50,133] DEBUG o.s.c.g.h.RoutePredicateHandlerMapping  - [492710f9-4] Mapped to org.springframework.cloud.gateway.handler.FilteringWebHandler@6944ba24 
+[2020-03-25 07:37:50,135] DEBUG o.s.c.g.handler.FilteringWebHandler  - Sorted gatewayFilterFactories: [[GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.RemoveCachedBodyFilter@7d3e8655}, order = -2147483648], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.AdaptCachedBodyGlobalFilter@2a693f59}, order = -2147482648], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.NettyWriteResponseFilter@6933b6c6}, order = -1], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.ForwardPathFilter@169bb4dd}, order = 0], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.GatewayMetricsFilter@3aa078fd}, order = 0], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.RouteToRequestUrlFilter@7dfb0c0f}, order = 10000], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.config.GatewayNoLoadBalancerClientAutoConfiguration$NoLoadBalancerClientFilter@d23e042}, order = 10100], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.WebsocketRoutingFilter@1f9e9475}, order = 2147483646], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.NettyRoutingFilter@7bbc8656}, order = 2147483647], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.ForwardRoutingFilter@626abbd0}, order = 2147483647]] 
+[2020-03-25 07:37:50,141] TRACE o.s.c.g.f.RouteToRequestUrlFilter  - RouteToRequestUrlFilter start 
+[2020-03-25 07:37:50,160] TRACE o.s.c.g.filter.NettyRoutingFilter  - outbound route: 867ae325, inbound: [492710f9-4]  
+[2020-03-25 07:37:50,337] TRACE o.s.c.g.f.NettyWriteResponseFilter  - NettyWriteResponseFilter start inbound: 867ae325, outbound: [492710f9-4]  
+[2020-03-25 07:37:50,347] TRACE o.s.c.g.filter.GatewayMetricsFilter  - gateway.requests tags: [tag(httpMethod=GET),tag(httpStatusCode=401),tag(outcome=CLIENT_ERROR),tag(routeId=resource),tag(routeUri=http://gw-oauth-resource:8080/res),tag(status=UNAUTHORIZED)] 
+[2020-03-25 07:37:50,352] TRACE o.s.w.s.a.HttpWebHandlerAdapter  - [492710f9-4] Completed 401 UNAUTHORIZED, headers={masked} 
+[2020-03-25 07:37:50,352] TRACE org.springframework.web.HttpLogging  - [492710f9-4] Handling completed 

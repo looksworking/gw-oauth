@@ -36,8 +36,9 @@ spring:
 #            user-info-uri: http://172.10.16.1:8040/userinfo
 #            user-name-attribute: user_name
 ##            jwk-set-uri: http://top-oauth-server:8090/uaa/token_keys
+
   security:
     oauth2:
       resourceserver:
         jwt:
-          public-key-location:
+          jwk-set-uri: http://gw-oauth-auth:8080/token_keys
