@@ -42,9 +42,6 @@ function build_images() {
     ${DOCKER} image build $BASE_DIR/gateway/build/libs/ --build-arg VERSION=${VERSION} --build-arg APP_VERSION=${APP_VERSION}\
     -t "$DOCKER_REGISTRY/gw-oauth-gateway:${VERSION}" -f $DEPLOY_DIR/gateway/Dockerfile
 
-    echo "Building the UAA"
-    cd $DEPLOY_DIR/uaa
-    ${DOCKER} build --tag scg-demo-uaa .
 }
 
 function do_start() {

@@ -29,7 +29,7 @@ import javax.sql.DataSource
 @Configuration
 @EnableAuthorizationServer
 class AuthZServerConfig(private val passwordEncoder: BCryptPasswordEncoder,
-                        private val dataSource: DataSource,
+//                        private val dataSource: DataSource,
                         @Qualifier("authenticationManagerBean") private val authenticationManager: AuthenticationManager) : AuthorizationServerConfigurerAdapter() {
 
     private val keyPair = KeyStoreKeyFactory(ClassPathResource("keystore.jks"), "Welcome1".toCharArray()).getKeyPair("jwt")

@@ -1,5 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: liquibase/initdb.sql
-  - includeAll:
-      path: liquibase/data/

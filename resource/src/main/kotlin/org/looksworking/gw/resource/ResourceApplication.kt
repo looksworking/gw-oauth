@@ -3,12 +3,9 @@ package org.looksworking.gw.resource
 import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.security.oauth2.jwt.Jwt
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
-import java.util.stream.Collectors
 import javax.servlet.http.HttpServletRequest
 
 @RestController
@@ -20,25 +17,24 @@ class ResourceApplication {
     }
 
     @GetMapping("/res")
-    fun resource(@AuthenticationPrincipal jwt: Jwt, httpRequest: HttpServletRequest): String? {
-        LOG.trace("***** JWT Headers: {}", jwt.headers)
-        LOG.trace("***** JWT Claims: {}", jwt.claims.toString())
-        LOG.trace("***** JWT Token: {}", jwt.tokenValue)
-        val part1 = String.format("Resource accessed by: %s (with subjectId: %s)",
-                jwt.claims["user_name"],
-                jwt.subject)
-        val headers = Collections.list(httpRequest.headerNames).stream()
-                .map { headerName: String ->
-                    "$headerName:" + httpRequest.getHeader("""
-    $headerName
-    
-    """.trimIndent())
-                }
-                .collect(Collectors.joining("\n"))
-        return """
-            $part1
-            $headers
-            """.trimIndent()
+    fun resource(jwt: JwtAuthenticationToken, httpRequest: HttpServletRequest): String? {
+        LOG.info("***** JWT Headers: {}", jwt.token.headers)
+        LOG.info("***** JWT Claims: {}", jwt.token.claims.toString())
+        LOG.info("***** JWT Token: {}", jwt.token.tokenValue)
+        val logout = """
+            <form method="post" action="/exitGateway" class="inline">
+              <button type="submit" name="submit_param" value="submit_value" class="link-button">
+                exitGateway
+              </button>
+            </form>
+            <form method="post" action="/exitOAuth" class="inline">
+              <button type="submit" name="submit_param" value="submit_value" class="link-button">
+                exitOAuth
+              </button>
+            </form>
+        """
+        return "$logout Resource accessed by: ${jwt.token.claims["user_name"]} <br> " +
+                "with claims: ${jwt.token.claims}"
     }
 }
 

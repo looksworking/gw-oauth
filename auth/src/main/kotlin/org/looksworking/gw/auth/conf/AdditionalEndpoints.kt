@@ -3,10 +3,8 @@ package org.looksworking.gw.auth.conf
 import com.nimbusds.jose.jwk.JWKSet
 import org.slf4j.LoggerFactory
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.oauth2.provider.OAuth2Authentication
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.multipart.support.AbstractMultipartHttpServletRequest
 import javax.servlet.http.HttpServletRequest
 
 
