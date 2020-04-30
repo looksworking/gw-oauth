@@ -22,6 +22,11 @@ class ResourceApplication {
         LOG.info("***** JWT Claims: {}", jwt.token.claims.toString())
         LOG.info("***** JWT Token: {}", jwt.token.tokenValue)
         val logout = """
+            <form method="post" action="/exitGateway" class="inline">
+              <button type="submit" name="submit_param" value="submit_value" class="link-button">
+                exitGateway
+              </button>
+            </form>
             <form method="post" action="/exitOAuth" class="inline">
               <button type="submit" name="submit_param" value="submit_value" class="link-button">
                 exitOAuth

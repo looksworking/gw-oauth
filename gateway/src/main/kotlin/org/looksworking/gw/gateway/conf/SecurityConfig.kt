@@ -4,7 +4,9 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
 import org.springframework.security.config.web.server.ServerHttpSecurity
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository
 import org.springframework.security.web.server.SecurityWebFilterChain
+import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository
 
 @Configuration
 @EnableWebFluxSecurity
@@ -18,7 +20,8 @@ class SecurityConfig {
                 .and()
                 .oauth2Login()
                 .and().logout().logoutUrl("/exitGateway")
-                .and().csrf().disable()
+                .and()
+                .csrf().disable()
 
         return http.build()
     }

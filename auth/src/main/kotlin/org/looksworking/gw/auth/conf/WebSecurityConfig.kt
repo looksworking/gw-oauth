@@ -28,8 +28,9 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
                 .authenticated()
                 .and()
                 .logout().logoutUrl("/exitOAuth")
+                .invalidateHttpSession(true)
                 .clearAuthentication(true)
-                .deleteCookies("SESSION")
+                .deleteCookies("SESSION", "JSESSIONID")
                 .logoutSuccessUrl("http://172.10.16.1:8030/res")
                 .and().csrf().disable()
     }
